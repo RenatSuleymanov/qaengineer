@@ -51,24 +51,26 @@ public class QaEngineer {
     @Test
     public void test3() {
         //3. ссылка "Софт для быстрого создания скриншотов"
-        driver.findElement(By.linkText("ВНИКАТЬ В ДЕТАЛИ ПРОЕКТОВ")).click();
+        driver.navigate().refresh();
         driver.findElement(By.linkText("НАХОДИТЬ НЕСОВЕРШЕНСТВА")).click();
         Assert.assertTrue(driver.findElement(By.linkText("Софт для быстрого создания скриншотов")).getAttribute("href").equals("https://monosnap.com"));
     }
 
     @Test
-    public void test4() {
+    public void test4() throws InterruptedException {
         //4. Section.info не отображает информацию если выбрать любую вкладку дважды
+        driver.navigate().refresh();
         driver.findElement(By.linkText("ВНИКАТЬ В ДЕТАЛИ ПРОЕКТОВ")).click();
         WebElement element = driver.findElement(By.className("info-details"));
-
-        while (!element.getCssValue("opacity").contentEquals("1")) {
-            //System.out.println(element.getCssValue("opacity"));
-        }
+        Thread.sleep(1500);
+        /*while (!element.getCssValue("opacity").contentEquals("1")) {
+            System.out.println(element.getCssValue("opacity"));
+        }*/
         driver.findElement(By.linkText("ВНИКАТЬ В ДЕТАЛИ ПРОЕКТОВ")).click();
-        while (!element.getCssValue("opacity").contentEquals("1")) {
-            //System.out.println(element.getCssValue("opacity"));
-        }
+        Thread.sleep(1500);
+       /* while (!element.getCssValue("opacity").contentEquals("1")) {
+            System.out.println(element.getCssValue("opacity"));
+        }*/
         Assert.assertTrue(element.getCssValue("display").equals("block"));
     }
 
