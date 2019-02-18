@@ -122,6 +122,29 @@ public class QaEngineer {
         Assert.assertTrue(egg);
     }
 
+    @Test
+    public void test11() {
+        //11 проверка текста - "станадрт" должен быть "стандарт"
+        driver.navigate().refresh();
+        driver.findElement(By.linkText("НАХОДИТЬ НЕСОВЕРШЕНСТВА")).click();
+        WebElement element = driver.findElement(By.className("info-errors")).findElement(By.tagName("article"));
+        Assert.assertEquals("ДЛЯ ЧЕГО ЭТО НУЖНО?\n" +
+                "В CSSSR внедрен высокий стандарт качества. Если мы верстаем сайт, это значит, что он будет одинаково " +
+                "хорошо отображаться во всех заявленных браузерах, на нем будут самые красивые эффекты, а поведение " +
+                "всех элементов страниц будет предсказуемым и приятным для пользователя.", element.getText());
+    }
+
+    @Test
+    public void test12() {
+        //11 проверка текста - "вебстудия" должен быть "веб-студия"
+        driver.navigate().refresh();
+        driver.findElement(By.linkText("СОПРОВОЖДАТЬ ПРОЕКТЫ")).click();
+        WebElement element = driver.findElement(By.className("info-support")).findElement(By.tagName("article"));
+        Assert.assertEquals("В ЧЕМ ОСОБЕННОСТЬ?\n" +
+                "В CSSSR налажено конвейерное производство проектов. Мы не обычная веб-студия. В среднем за месяц мы " +
+                "выпускаем в 10 раз больше проектов, чем любая веб-студия полного цикла. Поэтому наши сотрудники ведут " +
+                "несколько проектов одновременно.", element.getText());
+    }
     @AfterTest
     public void tearDown() {
         //Close the browser
